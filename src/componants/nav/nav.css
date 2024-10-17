@@ -1,0 +1,58 @@
+/* .container{
+    background-image: url(../../assets/home-banner-bg.png);
+     background-repeat: no-repeat; 
+    background-size:cover;
+    height: 600px;
+    
+} */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 200px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+  
+    color: white;
+    z-index: 1000;
+  
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+  
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+.logoContainer {
+    display: flex;
+    align-items: center;
+
+    margin: .5rem;
+}
+
+.logoContainer img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    filter: invert(100%)  brightness(2) ;
+    
+}
+
+.logoContainer h1 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}

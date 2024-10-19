@@ -1,0 +1,83 @@
+.features-section {
+    text-align: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+.features-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.features-section p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.featureCard {
+    width: 30%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: left;
+}
+
+.feature-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.feature-info {
+    padding: 20px;
+}
+
+.date-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #7d8daa;
+    padding: 10px;
+    color: white;
+    border-radius: 4px;
+}
+
+.date-box span {
+    display: block;
+    font-size: 12px;
+}
+
+.feature-info h3 {
+    font-size: 18px;
+    margin: 15px 0 10px;
+    color: #333;
+}
+
+.feature-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.view-details {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-details:hover {
+    text-decoration: underline;
+}

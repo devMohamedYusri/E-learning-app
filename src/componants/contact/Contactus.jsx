@@ -1,47 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./nav.css";
-
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleSignUpStudent = () => {
-    navigate("/sign-up");
-  };
-
-  const handleSignUpInstructor = () => {
-    navigate("/instructorSign");
-  };
-
-  // New handlers for navigation to Courses and Contact pages
-  const handleCoursesClick = () => {
-    navigate("/courses");
-  };
-
-  const handleContactClick = () => {
-    navigate("/contact");
-  };
-
+import "./contactus.css";
+import ContactForm from "./contactform";
+import Navbar  from "../nav/Navbar"
+const Contact = () => {
   return (
     <>
-      <svg
+    <svg
         width="100%"
         height="100%"
         id="svg"
@@ -80,32 +43,49 @@ const Navbar = () => {
           transform="rotate(-180 720 350)"
         ></path>
       </svg>
-      <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-        <div className="logoContainer">
-          <img src="/src/assets/logo.png" alt="" />
-          <h1>EDUVOYAGE</h1>
+
+    <Navbar/>
+      <div className="container">
+        <div className="contact-content">
+          <h1>Contacts</h1>
+          <p>
+            In the history of modern astronomy, there is probably no one greater
+            leap forward than the building.
+          </p>
+          <div className="breadcrumbs">
+            <a href="/">Home</a> ➔ <a href="#">Contacts</a>
+          </div>
         </div>
-        <ul>
-          <li onClick={() => navigate("/")}>Home</li>
-
-          {/* New navigation for Courses and Contact */}
-          <li onClick={handleCoursesClick}>Courses</li>
-
-          <li onClick={handleContactClick}>Contact</li>
-
-          <li>
-            <div className="dropdown">
-              <i className={"fa-regular fa-user dropbtn"}></i>
-              <div className="dropdown-content">
-                <a onClick={handleSignUpStudent}>Sign-up as STUDENT</a>
-                <a onClick={handleSignUpInstructor}>Sign-up as INSTRUCTOR</a>
-              </div>
+      </div>
+      <div className="contact-container">
+        <div className="contact-info ">
+          <div className="info-item">
+            <i className="icon fa fa-home"></i>
+            <div>
+              <h4>Binghamton, New York</h4>
+              <p>4343 Hinkle Deegan Lake Road</p>
             </div>
-          </li>
-        </ul>
-      </nav>
+          </div>
+          <div className="info-item">
+            <i className="icon fa fa-phone"></i>
+            <div>
+              <h4>00 (958) 9865 562</h4>
+              <p>Mon to Fri 9am to 6 pm</p>
+            </div>
+          </div>
+          <div className="info-item">
+            <i className="icon fa fa-envelope"></i>
+            <div>
+              <h4>support@colorlib.com</h4>
+              <p>Send us your query anytime!</p>
+            </div>
+          </div>
+        </div>
+        <ContactForm />
+      </div>
+  
     </>
   );
 };
 
-export default Navbar;
+export default Contact;

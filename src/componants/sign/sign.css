@@ -8,7 +8,7 @@
 .sign-up {
     max-width: 400px;
     margin: auto;
-    margin-top: 130px;
+    margin-top: 100px;
     padding: 80px;
     border: 1px solid #7319a0;
     border-radius: 8px;
@@ -80,4 +80,22 @@ label {
         min-width: 60px;
         padding: 0 25px;
     }
+}
+select{
+    border-radius: 10px;
+    border:#5c0e8c solid 3px;
+}
+.login-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.login-link a {
+    color: #007bff;
+    /* Adjust the color as you like */
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }

@@ -1,14 +1,14 @@
 import "./sign.css";
 import Logo from "../logo/logo";
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Import Link component
 
-const SignUp = () => {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const InstructorSign = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-    grade: "", // New field for grade
   });
 
   const [errors, setErrors] = useState({});
@@ -24,7 +24,6 @@ const SignUp = () => {
     if (!formData.username) newErrors.username = "Username is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.password) newErrors.password = "Password is required";
-    if (!formData.grade) newErrors.grade = "Please select a grade"; // Grade validation
     return newErrors;
   };
 
@@ -35,8 +34,9 @@ const SignUp = () => {
       setErrors(validationErrors);
     } else {
       setErrors({});
+
       console.log("Form submitted", formData);
-      navigate("/courses");
+      navigate("/home");
     }
   };
 
@@ -76,30 +76,13 @@ const SignUp = () => {
             />
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
-          <div>
-            <label>Select Grade</label>
-            <select name="grade" value={formData.grade} onChange={handleChange}>
-              <option value="">Select your grade</option>
-              <option value="grade-1">Grade 1</option>
-              <option value="grade-2">Grade 2</option>
-              <option value="grade-3">Grade 3</option>
-              <option value="grade-4">Grade 4</option>
-              <option value="grade-5">Grade 5</option>
-            </select>
-            {errors.grade && <p className="error">{errors.grade}</p>}
-          </div>
           <button className="button" type="submit">
             Sign Up
           </button>
         </form>
-
-        {/* Link to Login page */}
-        <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
-        </p>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default InstructorSign;

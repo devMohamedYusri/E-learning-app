@@ -1,0 +1,26 @@
+.slider-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.slider-container > h2{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.course-card {
+    padding: 20px;
+    text-align: center;
+}
+
+.course-card img {
+    width: 100%;
+    height: auto;
+}
+
+.course-info {
+    margin-top: 10px;
+}
+
+.course-info p {
+    margin: 5px 0;
+}

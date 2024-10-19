@@ -1,0 +1,121 @@
+
+
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 130px;
+  padding: 80px;
+  border: 1px solid #7319a0;
+  border-radius: 8px;
+  background-color: rgba(154, 123, 234, 0.307);
+  box-shadow: #b87fde 5px 5px 5px 5px;
+}
+.login-container h1{
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: bolder;
+  color:  #555555;
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.login-form input {
+  border: #5c0e8c solid 3px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #7f57ff;
+  box-shadow: 0px 0px 5px rgba(127, 87, 255, 0.5);
+}
+
+.login-btn {
+  background-color: #f0e0fb;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #fff;
+}
+
+.login-btn:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+.register-link p{
+  color: #555555;
+}
+.register-link a {
+  color: #60309e;;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+
+@media (min-width: 768px) {
+  .login-btn {
+      min-width: 60px;
+      padding: 0 25px;
+  }
+}
+@media (max-width:325px){
+  .login-container{
+    width: fit-content;
+  }
+    .login-btn{
+      width: fit-content;
+    }
+    .login-form input{
+      width: fit-content;
+    }
+}

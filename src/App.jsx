@@ -5,7 +5,7 @@ import InstructorSign from "./componants/sign/instructorSign";
 import Login from "./componants/login/Login";
 import Courses from "./componants/courses/courses.jsx"; // Import Courses component
 import Contact from "./componants/contact/Contactus"; // Import Contact component
-
+import  Footer  from "./componants/footer/Footer.jsx";
 export default function App() {
   return (
     <Router>
@@ -19,6 +19,8 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} /> 
       </Routes>
+      <Footer/>
     </Router>
+    
   );
 }

@@ -1,8 +1,8 @@
 import "./sign.css";
 import Logo from "../logo/logo";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/api/authorization"; 
 
 const InstructorSign = () => {
   const [formData, setFormData] = useState({
@@ -21,22 +21,33 @@ const InstructorSign = () => {
 
   const validate = () => {
     const newErrors = {};
+    const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
     if (!formData.username) newErrors.username = "Username is required";
     if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (!passwordRegex.test(formData.password)) {
+      newErrors.password =
+        "Password must be at least 8 characters and include both letters and numbers";
+    }
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
     } else {
       setErrors({});
-
-      console.log("Form submitted", formData);
-      navigate("/home");
+      try {
+        const response = await registerUser(formData); 
+        console.log("Form submitted successfully:", response);
+        navigate("/instructor"); 
+      } catch (err) {
+        setErrors({ server: err.message }); 
+      }
     }
   };
 
@@ -76,6 +87,8 @@ const InstructorSign = () => {
             />
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
+          {errors.server && <p className="error">{errors.server}</p>}{" "}
+         
           <button className="button" type="submit">
             Sign Up
           </button>

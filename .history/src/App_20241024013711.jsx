@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./componants/home/Home";
+import Details from "./componants/courseDetails/Details.jsx"; 
 import SignUp from "./componants/sign/SignUp";
 import InstructorSign from "./componants/sign/instructorSign";
 import Login from "./componants/LoginPage/login";

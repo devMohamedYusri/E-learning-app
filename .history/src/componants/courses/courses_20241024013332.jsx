@@ -2,7 +2,10 @@ import "./courses.css";
 import Navbar from "../nav/Navbar";
 import { useEffect, useState } from "react";
 import CourseSlider from "./CourseSlider";
+<<<<<<< HEAD
 import { fetchAllCourses } from "../../services/api/courses";
+
+=======
 import Footer from "../footer/Footer.jsx";
 const Courses = () => {
   const [myCourses, setMyCourses] = useState([]); 

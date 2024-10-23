@@ -1,7 +1,11 @@
 import "./sign.css";
 import Logo from "../logo/logo";
 import { useState } from "react";
+<<<<<<< HEAD:src/componants/sign/Sign up.jsx
 import { useNavigate, Link } from "react-router-dom";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> afd2ee8fa574727d4e9feadf5a0a50b524ef0505:src/componants/sign/SignUp.jsx
 import { registerUser } from "../../services/api/authorization"; 
 
 const SignUp = () => {
@@ -10,6 +14,10 @@ const SignUp = () => {
     email: "",
     password: "",
     grade: "",
+<<<<<<< HEAD:src/componants/sign/Sign up.jsx
+    
+=======
+>>>>>>> afd2ee8fa574727d4e9feadf5a0a50b524ef0505:src/componants/sign/SignUp.jsx
   });
 
   const [errors, setErrors] = useState({});
@@ -32,7 +40,10 @@ const SignUp = () => {
       newErrors.password =
         "Password must be at least 8 characters and include a number";
     }
+<<<<<<< HEAD:src/componants/sign/Sign up.jsx
     if (!formData.password) newErrors.password = "Password is required";
+=======
+>>>>>>> afd2ee8fa574727d4e9feadf5a0a50b524ef0505:src/componants/sign/SignUp.jsx
     if (!formData.grade) newErrors.grade = "Please select a grade";
     return newErrors;
   };
@@ -117,7 +128,11 @@ const SignUp = () => {
         </form>
 
         <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
+<<<<<<< HEAD:src/componants/sign/Sign up.jsx
+          Already have an account? <Link to="../login/login">Log in</Link>
+=======
+          Already have an account? <a href="/login">Log in</a>
+>>>>>>> afd2ee8fa574727d4e9feadf5a0a50b524ef0505:src/componants/sign/SignUp.jsx
         </p>
       </div>
     </div>

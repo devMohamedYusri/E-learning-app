@@ -117,7 +117,11 @@ const SignUp = () => {
         </form>
 
         <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
+<<<<<<< HEAD:src/componants/sign/Sign up.jsx
+          Already have an account? <Link to="../login/login">Log in</Link>
+=======
+          Already have an account? <a href="/login">Log in</a>
+>>>>>>> afd2ee8fa574727d4e9feadf5a0a50b524ef0505:src/componants/sign/SignUp.jsx
         </p>
       </div>
     </div>

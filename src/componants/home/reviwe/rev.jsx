@@ -79,10 +79,10 @@ SamplePrevArrow.propTypes = {
 
 const styles = {
   sliderContainer: {
-    width: "90%", // Adjust width for responsiveness
-    maxWidth: "1200px", // Set a maximum width
+    width: "90%", 
+    maxWidth: "1200px", 
     margin: "auto",
-    padding: "20px 0", // Add padding for better spacing
+    padding: "20px 0", 
   },
   card: {
     display: "flex",
@@ -119,7 +119,7 @@ const styles = {
     borderRadius: "8px",
   },
   quoteText: {
-    fontSize: "1.25rem", // Use relative units for better scalability
+    fontSize: "1.25rem", 
     fontWeight: "bold",
     color: "black",
   },
@@ -128,36 +128,36 @@ const styles = {
   },
 };
 
-// Add responsive styling via media queries
+
 const mediaQueries = `
   @media (max-width: 1024px) {
     ${styles.cardContent} {
-      flex-direction: column; // Stack text and image on smaller screens
+      flex-direction: column; 
       align-items: flex-start;
     }
     
     ${styles.imageContainer} {
-      text-align: center; // Center image on smaller screens
-      margin-top: 10px; // Add margin for spacing
+      text-align: center; 
+      margin-top: 10px; 
     }
     
     ${styles.quoteText} {
-      font-size: 1.1rem; // Decrease font size for smaller screens
+      font-size: 1.1rem;
     }
   }
 
   @media (max-width: 600px) {
     ${styles.sliderContainer} {
-      padding: 10px 0; // Reduce padding on very small screens
+      padding: 10px 0; 
     }
     
     ${styles.card} {
-      padding: 5px; // Reduce padding on very small screens
+      padding: 5px; 
     }
   }
 `;
 
-// Append media queries to the document head
+
 const styleElement = document.createElement("style");
 styleElement.innerHTML = mediaQueries;
 document.head.appendChild(styleElement);

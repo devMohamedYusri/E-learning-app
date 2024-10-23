@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./componants/home/Home";
+import Details from "./componants/courseDetails/Details.jsx"; 
 import SignUp from "./componants/sign/SignUp";
 import InstructorSign from "./componants/sign/instructorSign";
 import Login from "./componants/LoginPage/login";
@@ -16,7 +17,7 @@ export default function App() {
         <Route path="/instructorSign" element={<InstructorSign />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/course/details/:id" element={<CourseInfoDetails />} />
+        <Route path="/course/details/:id" element={<Details />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} /> 

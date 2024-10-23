@@ -5,6 +5,7 @@ import Footer from "../footer/Footer.jsx";
 const Contact = () => {
   return (
     <>
+
     <Navbar/>
       <div className="container">
         <div className="contact-content">

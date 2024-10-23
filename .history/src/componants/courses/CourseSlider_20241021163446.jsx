@@ -46,7 +46,7 @@ export default function CourseSlider({ webCourses, programmingCourses }) {
                 Rating: {course.rating}⭐️ ({course.reviews} reviews)
               </p>
               <p>Price: £{course.price}</p>
-              <Link to={`/course/details/${course.id}`} className="details-btn">
+              <Link to={`/course/${course.id}`} className="details-btn">
                 <b>View </b>
                 <i className="fa-solid fa-arrow-right"></i>
               </Link>
@@ -63,10 +63,10 @@ export default function CourseSlider({ webCourses, programmingCourses }) {
               <img src={course.img} alt={course.title} />
               <h3>{course.title}</h3>
               <p>
-                Rating: {course.rating}⭐️({course.reviews} reviews)
+                Rating: {course.rating}⭐️ ({course.reviews} reviews)
               </p>
               <p>Price: £{course.price}</p>
-              <Link to={`/course/details/${course.id}`} className="details-btn">
+              <Link to={`/course/${course.id}`} className="details-btn">
                 <b>View </b>
                 <i className="fa-solid fa-arrow-right"></i>
               </Link>

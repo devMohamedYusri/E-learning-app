@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/instructorSign" element={<InstructorSign />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/course/details/:id" element={<Details />} />
+        <Route path="/course/details" element={<Details />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} /> 

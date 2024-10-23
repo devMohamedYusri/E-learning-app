@@ -163,6 +163,7 @@ const Courses = () => {
           )}
         </div>
 
+        {/* Render the CourseSlider component */}
         <div className="course-container">
           <CourseSlider
             webCourses={webCourses}

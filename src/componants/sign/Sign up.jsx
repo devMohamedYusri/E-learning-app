@@ -1,14 +1,14 @@
 import "./sign.css";
 import Logo from "../logo/logo";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Import Link component
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-    grade: "", // New field for grade
+    grade: "", 
   });
 
   const [errors, setErrors] = useState({});
@@ -24,7 +24,7 @@ const SignUp = () => {
     if (!formData.username) newErrors.username = "Username is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.password) newErrors.password = "Password is required";
-    if (!formData.grade) newErrors.grade = "Please select a grade"; // Grade validation
+    if (!formData.grade) newErrors.grade = "Please select a grade";
     return newErrors;
   };
 

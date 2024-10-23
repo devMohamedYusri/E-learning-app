@@ -6,9 +6,10 @@ import { registerUser } from "../../services/api/authorization";
 
 const InstructorSign = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
+    role: 'instructor' 
   });
 
   const [errors, setErrors] = useState({});
@@ -23,7 +24,7 @@ const InstructorSign = () => {
     const newErrors = {};
     const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 
-    if (!formData.username) newErrors.username = "Username is required";
+    if (!formData.name) newErrors.name = "name is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.password) {
       newErrors.password = "Password is required";
@@ -42,8 +43,10 @@ const InstructorSign = () => {
     } else {
       setErrors({});
       try {
+        console.log(formData,"this; the form data");
         const response = await registerUser(formData); 
-        console.log("Form submitted successfully:", response);
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
         navigate("/instructor"); 
       } catch (err) {
         setErrors({ server: err.message }); 
@@ -58,14 +61,14 @@ const InstructorSign = () => {
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Username</label>
+            <label>name</label>
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
             />
-            {errors.username && <p className="error">{errors.username}</p>}
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
           <div>
             <label>Email</label>

@@ -1,26 +1,22 @@
 import "./login.css";
 import { useState } from "react";
 import { loginUser } from "../../services/api/authorization"; 
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-<<<<<<< HEAD
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const loginData = { email, password };
       const data = await loginUser(loginData);
-
-      
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     } catch (err) {
       
       setError(err.message || "Invalid email or password");
@@ -63,7 +59,7 @@ export default function Login() {
 
         <div className="register-link">
           <p>
-            Dont have an account? <link to="/sign-up">Sign up here</link>
+            Dont have an account? <Link to="/sign-up">Sign up here</Link>
           </p>
         </div>
       </div>

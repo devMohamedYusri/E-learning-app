@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const registerUser = async (userData) => {
     try {
-        const response = await axios.post(' https://e-learning-backend-production-8163.up.railway.app/api/users/auth/register', userData);
+        const response = await axios.post('https://e-learning-backend-production-8163.up.railway.app/api/users/auth/register', userData);
         if (response && response.data) {
             return response.data;
         } else {
@@ -48,4 +48,4 @@ const loginUser = async (loginData) => {
     }
 };
 
-export { registerUser, loginUser }; // Combined export statement
+export { registerUser, loginUser };

@@ -3,8 +3,6 @@ import axios from 'axios';
 const registerUser = async (userData) => {
     try {
         const response = await axios.post('https://e-learning-backend-production-8163.up.railway.app/api/users/auth/register', userData);
-
-        
         if (response && response.data) {
             return response.data;
         } else {
@@ -24,11 +22,6 @@ const registerUser = async (userData) => {
         }
     }
 };
-
-export { registerUser };
-
-
-
 
 const loginUser = async (loginData) => {
     try {
@@ -55,5 +48,4 @@ const loginUser = async (loginData) => {
     }
 };
 
-export { loginUser };
-
+export { registerUser, loginUser };

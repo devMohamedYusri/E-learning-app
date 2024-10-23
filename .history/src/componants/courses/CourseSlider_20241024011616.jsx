@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./course.css";
@@ -39,14 +40,13 @@ export default function CourseSlider({ courses,category }) {
         <Slider {...settings}>
           {courses.map((course) => (
             <div key={course._id} className="course-card">
-              <img src={course.img} alt={course.name} />
-              <h3>{course.name}</h3>
-              <p>Category: {course.category}</p>
-              <p>Description: {course.description}</p>
-              <p>Instructor ID: {course.instructorId}</p>
+              <img src={course.img} alt={course.title} />
+              <h3>{course.title}</h3>
+              <p>
+                Rating: {course.rating}⭐️ ({course.reviews} reviews)
+              </p>
               <p>Price: £{course.price}</p>
-              <p>Rating: {course.rate}⭐️</p>
-              <Link to={`/course/details/${course._id}`} className="details-btn">
+              <Link to={`/course/details/${course.id}`} className="details-btn">
                 <b>View </b>
                 <i className="fa-solid fa-arrow-right"></i>
               </Link>
@@ -57,3 +57,8 @@ export default function CourseSlider({ courses,category }) {
     </div>
   );
 }
+
+CourseSlider.propTypes = {
+  webCourses: PropTypes.array.isRequired,
+  programmingCourses: PropTypes.array.isRequired,
+};

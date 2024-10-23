@@ -13,7 +13,6 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const data = await fetchAllCourses();
-        console.log(data);
         setMyCourses(data);
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -23,13 +22,6 @@ const Courses = () => {
 
     fetchCourses(); 
   }, []); 
-
-  const truncateDescription = (description, maxLength) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength) + '...';
-    }
-    return description;
-  };
 
   const filteredCourses = myCourses.filter((course) =>
     course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -74,15 +66,13 @@ const Courses = () => {
         <div className="course1-container">
           {searchTerm && filteredCourses.length > 0 ? (
             filteredCourses.map((course) => (
-              <div key={course._id} className="course-card1 w-1/5 p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-lg font-semibold mb-2">{course.name}</h3>
-                <p className="text-sm text-gray-600 mb-2">Category: {course.category}</p>
-                <p className="text-sm text-gray-700 mb-4">{truncateDescription(course.description, 50)}</p>
-                <p className="text-sm text-gray-600 mb-2">Instructor ID: {course.instructorId}</p>
-                <div className="flex items-center mb-4">
-                  <p className="text-sm text-gray-600">Rating: {course.rate} ⭐</p>
-                </div>
-                <p className="text-lg font-semibold text-gray-800">Price: ${course.price}</p>
+              <div key={course._id} className="course-card1">
+                <h3>{course.name}</h3>
+                <p>Category: {course.category}</p>
+                <p>Description: {course.description}</p>
+                <p>Instructor ID: {course.instructorId}</p>
+                <p>Rating: {course.rate} ⭐</p>
+                <p>Price: ${course.price}</p>
               </div>
             ))
           ) : searchTerm ? (
@@ -94,7 +84,8 @@ const Courses = () => {
 
         <div className="course-container">
           <CourseSlider
-            courses={myCourses}
+            webCourses={myCourses.filter(course => course.category === "web")}
+            programmingCourses={myCourses.filter(course => course.category === "Programming Language")}
           />
         </div>
       </div>

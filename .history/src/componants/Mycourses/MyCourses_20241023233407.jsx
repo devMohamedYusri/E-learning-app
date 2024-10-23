@@ -21,7 +21,7 @@ const MyCourses = () => {
         },
     ];
 
-    const [searchTerm, setSearchTerm] = useState(""); 
+    const [searchTerm, setSearchTerm] = useState(""); // State for search term
 
     const filteredCourses = myCourses.filter((course) =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase())

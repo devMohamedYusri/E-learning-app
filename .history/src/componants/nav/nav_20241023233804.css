@@ -55,16 +55,11 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    left:-100px;
     background-color: beige;
     min-width: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
 }
 
 .dropdown-content a {

@@ -1,8 +1,8 @@
-import Navbar from "../nav/Navbar"; 
-import { useState } from "react"; 
+import Navbar from "../nav/Navbar"; // Import Navbar
+import { useState } from "react"; // Import useState for state management
 
 const MyCourses = () => {
-    const myCourses = [
+    const myCourses = [ // Sample data for My Courses
         {
             id: 1,
             title: "Learn Laravel: A Guided Path For Beginners",
@@ -21,7 +21,7 @@ const MyCourses = () => {
         },
     ];
 
-    const [searchTerm, setSearchTerm] = useState(""); 
+    const [searchTerm, setSearchTerm] = useState(""); // State for search term
 
     const filteredCourses = myCourses.filter((course) =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase())

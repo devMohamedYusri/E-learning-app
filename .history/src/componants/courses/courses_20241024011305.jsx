@@ -94,7 +94,7 @@ const Courses = () => {
 
         <div className="course-container">
           <CourseSlider
-            courses={myCourses}
+            courses={myCourses.filter(course => course)}
           />
         </div>
       </div>

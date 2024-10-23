@@ -2,37 +2,35 @@ import "./courses.css";
 import Navbar from "../nav/Navbar";
 import { useEffect, useState } from "react";
 import CourseSlider from "./CourseSlider";
-import { fetchAllCourses } from "../../services/api/courses";
+import { fetchAllCourses } from "../../services/api/courses"; // Ensure this import is correct
 
 const Courses = () => {
   const [myCourses, setMyCourses] = useState([]); 
-  const [searchTerm, setSearchTerm] = useState(""); 
-  const [error, setError] = useState(null); 
+  const [searchTerm, setSearchTerm] = useState(""); // Moved searchTerm state declaration up
+  const [error, setError] = useState(null); // State to hold error messages
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const data = await fetchAllCourses();
-        console.log(data);
-        setMyCourses(data);
+        const data = await fetchAllCourses(); // Fetch courses using the API service
+        console.log(data, 'this my courses');
+        setMyCourses(data); // Set the fetched courses to state
       } catch (error) {
         console.error("Error fetching courses:", error);
-        setError(error.message);
+        setError(error.message); // Set error message to state
       }
     };
 
     fetchCourses(); 
   }, []); 
 
-  const truncateDescription = (description, maxLength) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength) + '...';
-    }
-    return description;
-  };
+  const webCourses = myCourses.filter((course) => course.category === "web");
+  const programmingCourses = myCourses.filter(
+    (course) => course.category === "Programming Language"
+  );
 
   const filteredCourses = myCourses.filter((course) =>
-    course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase())
+    course.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -69,20 +67,17 @@ const Courses = () => {
           />
         </div>
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="error-message">{error}</p>} {/* Display error message if exists */}
 
         <div className="course1-container">
           {searchTerm && filteredCourses.length > 0 ? (
             filteredCourses.map((course) => (
-              <div key={course._id} className="course-card1 w-1/5 p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-lg font-semibold mb-2">{course.name}</h3>
-                <p className="text-sm text-gray-600 mb-2">Category: {course.category}</p>
-                <p className="text-sm text-gray-700 mb-4">{truncateDescription(course.description, 50)}</p>
-                <p className="text-sm text-gray-600 mb-2">Instructor ID: {course.instructorId}</p>
-                <div className="flex items-center mb-4">
-                  <p className="text-sm text-gray-600">Rating: {course.rate} ⭐</p>
-                </div>
-                <p className="text-lg font-semibold text-gray-800">Price: ${course.price}</p>
+              <div key={course.id} className="course-card1">
+                <img src={course.img} alt={course.title} />
+                <h3>{course.title}</h3>
+                <p>Rating: {course.rating} ⭐</p>
+                <p>Reviews: {course.reviews}</p>
+                <p>Price: ${course.price}</p>
               </div>
             ))
           ) : searchTerm ? (
@@ -94,7 +89,8 @@ const Courses = () => {
 
         <div className="course-container">
           <CourseSlider
-            courses={myCourses}
+            webCourses={webCourses}
+            programmingCourses={programmingCourses}
           />
         </div>
       </div>

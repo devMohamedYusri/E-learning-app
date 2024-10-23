@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./course.css";
@@ -57,3 +58,8 @@ export default function CourseSlider({ courses,category }) {
     </div>
   );
 }
+
+CourseSlider.propTypes = {
+  webCourses: PropTypes.array.isRequired,
+  programmingCourses: PropTypes.array.isRequired,
+};

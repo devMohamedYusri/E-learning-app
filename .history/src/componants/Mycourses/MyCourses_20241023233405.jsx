@@ -1,5 +1,5 @@
 import Navbar from "../nav/Navbar"; 
-import { useState } from "react"; 
+import { useState } from "react"; // Import useState for state management
 
 const MyCourses = () => {
     const myCourses = [
@@ -21,7 +21,7 @@ const MyCourses = () => {
         },
     ];
 
-    const [searchTerm, setSearchTerm] = useState(""); 
+    const [searchTerm, setSearchTerm] = useState(""); // State for search term
 
     const filteredCourses = myCourses.filter((course) =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase())

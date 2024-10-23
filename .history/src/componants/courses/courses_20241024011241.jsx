@@ -94,7 +94,8 @@ const Courses = () => {
 
         <div className="course-container">
           <CourseSlider
-            courses={myCourses}
+            webCourses={myCourses.filter(course => course.category === "web")}
+            programmingCourses={myCourses.filter(course => course.category === "Programming Language")}
           />
         </div>
       </div>

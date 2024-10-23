@@ -1,25 +1,22 @@
 import Navbar from "../nav/Navbar"; 
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
 
 const MyCourses = () => {
-    const myCourses = [
-        {
-            id: 1,
-            title: "Learn Laravel: A Guided Path For Beginners",
-            rating: 4.2,
-            reviews: 9969,
-            price: 249.99,
-            img: "src/assets/larave.png",
-        },
-        {
-            id: 2,
-            title: "The Complete Angular Course",
-            rating: 4.4,
-            reviews: 72269,
-            price: 449.99,
-            img: "/src/assets/angular.png",
-        },
-    ];
+    const [myCourses, setMyCourses] = useState([]); 
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('YOUR_API_ENDPOINT'); // Replace with your API endpoint
+                const data = await response.json();
+                setMyCourses(data); // Set the fetched courses to state
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+
+        fetchCourses(); 
+    }, []); // Empty dependency array to run once on mount
 
     const [searchTerm, setSearchTerm] = useState(""); 
 

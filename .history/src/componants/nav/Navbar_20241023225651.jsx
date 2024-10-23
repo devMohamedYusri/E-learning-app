@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   const handleMyCoursesNavigate = () => {
-    navigate("/my-courses")
+    navigate("/myCourses")
   };
 
   const handleLogout = () => {

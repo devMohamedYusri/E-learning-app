@@ -2,17 +2,17 @@ import Slider from "./slider/slider"
 import FeatureGrid from "./grid/grid"
 import Navbar from "../nav/Navbar";
 import "./home.css"
-// import Image from "../../assets/undraw_Educator_re_ju47.png";
+import Image from "../../assets/undraw_Educator_re_ju47.png";
 import CustomSlider from "./reviwe/rev"
 import Features from "./feature/feature"
+import Footer from "../footer/Footer.jsx";
 
 function Home() {
   return (
     <>
-     
       <div className="header">
-        {/* <h1>Take the first step to learn with us</h1> */}
-        {/* <img src={Image}></img> */}
+        <h1 className="h1">Take the first step to learn with us</h1>
+        <img className="img" src={Image}></img>
       </div>
       <Navbar />
       <div className="s-part">
@@ -52,7 +52,8 @@ function Home() {
         <FeatureGrid />
       </div>
       <CustomSlider />
-      <Features/>
+      <Features />
+      <Footer />
     </>
   );
 }

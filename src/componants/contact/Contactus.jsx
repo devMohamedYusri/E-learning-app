@@ -1,6 +1,7 @@
 import "./contactus.css";
 import ContactForm from "./contactform";
 import Navbar  from "../nav/Navbar"
+import Footer from "../footer/Footer.jsx";
 const Contact = () => {
   return (
     <>
@@ -45,7 +46,7 @@ const Contact = () => {
         </div>
         <ContactForm />
       </div>
-  
+  <Footer/>
     </>
   );
 };

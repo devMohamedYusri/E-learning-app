@@ -1,67 +1,54 @@
 .header {
     display: flex;
     flex-direction: row;
-    /* استخدم اتجاه صف */
-    justify-content: space-between;
-    /* قم بمحاذاة المحتوى بين الجانبين */
     align-items: center;
-    /* قم بمحاذاة المحتوى عموديًا في المنتصف */
     position: relative;
-    /* احتفظ بها كنسق نسبي */
     padding: 20px;
-    /* Padding للمساحة */
     margin-top: -50px;
-    /* سحب الرأس لأعلى */
     z-index: 2;
-    /* تأكد من أنه يظهر فوق SVG */
+   
 }
 
 .header>img {
     width: 100%;
-    /* عرض كامل للصورة */
-    max-width: 400px;
-    /* عرض أقصى للشاشات الأكبر */
+   
+    max-width: 600px;
+   
     height: auto;
-    /* المحافظة على نسبة العرض إلى الارتفاع */
+    position: absolute;
+        top: 200px;
+        left: 900px;
 }
 
 .header>h1 {
-    font-size: 2rem;
-    /* استخدم وحدات نسبية لحجم الخط */
+    font-size: 3rem;
     color: white;
     margin: 0;
-    /* إزالة الهوامش */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: left;
-    /* محاذاة النص إلى اليسار */
     max-width: 500px;
-    /* عرض أقصى للنص */
+    position: absolute;
+        top: 300px;
+        font-size: 50px;
+        font-weight: bolder;
 }
 
 
 .s-part {
     display: flex;
     flex-wrap: wrap;
-    /* Allow wrapping on smaller screens */
     justify-content: space-around;
-    /* Space items evenly */
     margin: 20px 0;
-    /* Margin for spacing */
     padding: 0 20px;
-    /* Padding for better spacing */
 }
 
 .s-part-1,
 .s-part-2,
 .s-part-3 {
     flex: 1;
-    /* Allow equal growth */
     max-width: 300px;
-    /* Limit width for items */
     text-align: center;
-    /* Center text */
     margin: 10px;
-    /* Margin around items */
 }
 
 .s-part-1>i,
@@ -69,7 +56,6 @@
 .s-part-3>i {
     color: gray;
     font-size: 2rem;
-    /* Use relative units */
 }
 
 .s-part-1>i:hover,
@@ -82,10 +68,8 @@
 .s-part-2>h2,
 .s-part-3>h2 {
     font-size: 1.5rem;
-    /* Responsive font size */
     display: inline;
     margin: 10px 0;
-    /* Margin for spacing */
     font-weight: bolder;
 }
 
@@ -94,38 +78,43 @@
 .s-part-3>p {
     color: rgba(128, 128, 128, 0.786);
     margin: 5px 0;
-    /* Margin for spacing */
 }
 
-/* Media Queries for Additional Responsiveness */
+
 @media (max-width: 1024px) {
     .header>h1 {
         font-size: 1.5rem;
-        /* Adjust font size for medium screens */
+        align-items: center;
+        top:200px
+    }
+    .header>img{
+        display: none;
     }
 
     .s-part>div {
         max-width: 45%;
-        /* Adjust max width for medium screens */
+        
     }
 }
 
 @media (max-width: 600px) {
     .header>h1 {
-        font-size: 1.2rem;
-        /* Adjust font size for smaller screens */
+        display: none;
     }
+        .header>img {
+            display: none;
+        }
 
     .s-part {
         flex-direction: column;
-        /* Stack items vertically */
+        
         align-items: center;
-        /* Center align items */
+        
     }
 
     .s-part>div {
         max-width: 100%;
-        /* Full width for smaller screens */
+        
     }
 }
 

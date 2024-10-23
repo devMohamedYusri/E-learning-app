@@ -30,7 +30,6 @@ const Navbar = () => {
     navigate("/instructorSign");
   };
 
-  // New handlers for navigation to Courses and Contact pages
   const handleCoursesClick = () => {
     navigate("/courses");
   };

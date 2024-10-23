@@ -15,6 +15,7 @@
 
 .navbar.scrolled {
     background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
 }
 
 .navbar ul {
@@ -115,12 +116,9 @@
         font-size: 0.9rem;
     }
 
-    /* Ensure the dropdown aligns well on mobile */
     .dropdown-content {
         left: 0;
-        /* Align the dropdown to the left */
         right: auto;
-        /* Avoid right alignment */
     }
 }
 

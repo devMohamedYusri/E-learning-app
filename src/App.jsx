@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./componants/home/Home";
 import SignUp from "./componants/sign/Sign up";
 import InstructorSign from "./componants/sign/instructorSign";
-import Login from "./componants/login/Login";
+import Login from "./componants/login/login";
 import Courses from "./componants/courses/courses.jsx"; 
 import Contact from "./componants/contact/Contactus"; 
-import  Footer  from "./componants/footer/Footer.jsx";
+
 import Details from "./componants/courseDetails/Details.jsx"; 
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} /> 
       </Routes>
-      <Footer/>
+      
     </Router>
     
   );

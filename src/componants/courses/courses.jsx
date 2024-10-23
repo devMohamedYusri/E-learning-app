@@ -2,7 +2,7 @@ import "./courses.css";
 import Navbar from "../nav/Navbar";
 import { useState } from "react";
 import CourseSlider from "./CourseSlider";
-
+import Footer from "../footer/Footer.jsx";
 const Courses = () => {
   const courses = [
     {
@@ -170,6 +170,7 @@ const Courses = () => {
           />
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

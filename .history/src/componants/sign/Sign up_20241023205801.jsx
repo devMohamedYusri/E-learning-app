@@ -3,13 +3,18 @@ import Logo from "../logo/logo";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../../services/api/authorization"; 
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
+<<<<<<< HEAD
     grade: "",
+=======
+    grade: "", 
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
   });
 
   const [errors, setErrors] = useState({});
@@ -24,14 +29,18 @@ const SignUp = () => {
     const newErrors = {};
     const passwordRegex = /^(?=.*\d).{8,}$/;
 
-    if (!formData.name) newErrors.name = "name is required";
+    if (!formData.username) newErrors.username = "Username is required";
     if (!formData.email) newErrors.email = "Email is required";
+<<<<<<< HEAD
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (!passwordRegex.test(formData.password)) {
       newErrors.password =
         "Password must be at least 8 characters and include a number";
     }
+=======
+    if (!formData.password) newErrors.password = "Password is required";
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
     if (!formData.grade) newErrors.grade = "Please select a grade";
     return newErrors;
   };
@@ -47,9 +56,13 @@ const SignUp = () => {
         
         const response = await registerUser(formData);
         console.log("Form submitted successfully:", response);
+
+        
         navigate("/courses");
       } catch (error) {
         console.error("Error submitting the form:", error.message);
+
+        
         setErrors({ general: error.message });
       }
     }
@@ -62,14 +75,14 @@ const SignUp = () => {
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>name</label>
+            <label>Username</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="username"
+              value={formData.username}
               onChange={handleChange}
             />
-            {errors.name && <p className="error">{errors.name}</p>}
+            {errors.username && <p className="error">{errors.username}</p>}
           </div>
           <div>
             <label>Email</label>

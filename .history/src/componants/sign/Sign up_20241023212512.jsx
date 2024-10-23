@@ -53,6 +53,8 @@ const SignUp = () => {
         setErrors({ general: error.message });
       }
     }
+
+    console.log("submitted");
   };
 
   return (

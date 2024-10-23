@@ -40,6 +40,7 @@ const SignUp = () => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length) {
+      console.log(validationErrors);
       setErrors(validationErrors);
     } else {
       setErrors({});
@@ -47,12 +48,18 @@ const SignUp = () => {
         
         const response = await registerUser(formData);
         console.log("Form submitted successfully:", response);
+
+        
         navigate("/courses");
       } catch (error) {
         console.error("Error submitting the form:", error.message);
+
+        
         setErrors({ general: error.message });
       }
     }
+
+    console.log("submitted");
   };
 
   return (

@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 200px;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -20,7 +20,7 @@
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 50px;
 }
 
 .navbar li {
@@ -77,7 +77,7 @@
     display: block;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .navbar {
         padding: 10px 10px;

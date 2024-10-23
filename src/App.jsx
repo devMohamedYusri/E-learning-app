@@ -3,9 +3,11 @@ import Home from "./componants/home/Home";
 import SignUp from "./componants/sign/Sign up";
 import InstructorSign from "./componants/sign/instructorSign";
 import Login from "./componants/login/Login";
-import Courses from "./componants/courses/courses.jsx"; // Import Courses component
-import Contact from "./componants/contact/Contactus"; // Import Contact component
+import Courses from "./componants/courses/courses.jsx"; 
+import Contact from "./componants/contact/Contactus"; 
 import  Footer  from "./componants/footer/Footer.jsx";
+import Details from "./componants/courseDetails/Details.jsx"; 
+
 export default function App() {
   return (
     <Router>
@@ -14,7 +16,7 @@ export default function App() {
         <Route path="/instructorSign" element={<InstructorSign />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* New Routes for Courses and Contact */}
+        <Route path="/course/details/:id" element={<Details />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} /> 

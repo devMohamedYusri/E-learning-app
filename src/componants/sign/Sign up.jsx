@@ -2,14 +2,21 @@ import "./sign.css";
 import Logo from "../logo/logo";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+<<<<<<< HEAD
 import { registerUser } from "../../services/api/authorization"; 
+=======
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+<<<<<<< HEAD
     grade: "",
+=======
+    grade: "", 
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
   });
 
   const [errors, setErrors] = useState({});
@@ -26,12 +33,16 @@ const SignUp = () => {
 
     if (!formData.username) newErrors.username = "Username is required";
     if (!formData.email) newErrors.email = "Email is required";
+<<<<<<< HEAD
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (!passwordRegex.test(formData.password)) {
       newErrors.password =
         "Password must be at least 8 characters and include a number";
     }
+=======
+    if (!formData.password) newErrors.password = "Password is required";
+>>>>>>> 6a96aae21d8f9ae295dee3cb4e5c67c39a38c7bd
     if (!formData.grade) newErrors.grade = "Please select a grade";
     return newErrors;
   };

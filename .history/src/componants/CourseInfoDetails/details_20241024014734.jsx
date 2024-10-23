@@ -69,7 +69,6 @@ function Details() {
                 </div>
             </div>
         </div>
-        <Footer/>
         </div>
     );
 }

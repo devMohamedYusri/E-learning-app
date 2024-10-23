@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import angularImage from "../../../assets/angular.png";
-import reactImage from "../../../assets/React.png";
+import reactImage from "../../";
 import jsImage from "../../../assets/js.jpg";
 import bootstrapImage from "../../../assets/bootstrap.jpg";
 

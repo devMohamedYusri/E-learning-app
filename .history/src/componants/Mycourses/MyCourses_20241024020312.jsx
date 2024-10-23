@@ -1,4 +1,3 @@
-import Footer from "../footer/Footer";
 import Navbar from "../nav/Navbar"; 
 import { useState } from "react"; 
 
@@ -88,7 +87,7 @@ const MyCourses = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer
         </>
     );
 };

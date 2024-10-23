@@ -88,7 +88,7 @@ const MyCourses = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer
         </>
     );
 };

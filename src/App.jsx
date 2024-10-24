@@ -9,7 +9,7 @@ import InstructorSign from "./componants//sign/instructorSign.jsx";
 import Login from "./componants/LoginPage/login.jsx";
 import Courses from "./componants/courses/courses.jsx"; 
 import Contact from "./componants/contact/Contactus"; 
-import Footer from "./componants/footer/Footer.jsx";
+
 import Details from "./componants/CourseInfoDetails/Details.jsx"; 
 import MyCourses from "./componants/Mycourses/MyCourses.jsx";
 import CourseContent from "./componants/CourseContent/CourseContent.jsx";
@@ -69,7 +69,7 @@ export default function App() {
         <Route path="/" element={<Home />} /> 
         <Route path="/my-courses" element ={<MyCourses/>}/>
       </Routes>
-      <Footer />
+      
     </Router>
   );
 }

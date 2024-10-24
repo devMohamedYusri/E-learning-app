@@ -12,6 +12,7 @@ import Contact from "./componants/contact/Contactus";
 
 import Details from "./componants/CourseInfoDetails/Details.jsx"; 
 import MyCourses from "./componants/Mycourses/MyCourses.jsx";
+import CourseContent from "./componants/CourseContent/CourseContent.jsx";
 
 export default function App() {
   const [courses, setCourses] = useState([]);

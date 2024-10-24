@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getInstructorCourses, deleteCourse } from "../services/api/courses.js";
+import { getInstructorCourses, deleteCourse } from "../services/api/InstructorCourses.js";
 import CourseCard from "../componants/CourseCard.jsx";
 import "../App.css";
 
 const InstructorPage = () => {
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
-    const instructorId = 1;
+    const instructor = JSON.parse(localStorage.getItem('user'));
 
     // Load courses on component mount
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const fetchedCourses = await getInstructorCourses(instructorId);
+                const fetchedCourses = await getInstructorCourses(instructor._id);
                 setCourses(fetchedCourses);
             } catch (error) {
                 console.error("Failed to fetch courses:", error);
@@ -21,7 +21,7 @@ const InstructorPage = () => {
         };
 
         fetchCourses();
-    }, [instructorId]);
+    }, [instructor]);
 
     // Add New Course
     const handleAddCourse = () => {
@@ -43,6 +43,39 @@ const InstructorPage = () => {
         navigate(`/edit-course/${courseId}`);
     };
 
+    const handleLogout = () => {
+        const token = localStorage.getItem('token');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
+        if (token) {
+            const logoutAPI = async () => {
+                try {
+                    const response = await fetch('https://e-learning-backend-production-8163.up.railway.app/auth/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to logout');
+                    }
+
+                    console.log('Logged out successfully');
+                } catch (error) {
+                    console.error('Error logging out:', error.message);
+                }
+            };
+
+            logoutAPI();
+        } else {
+            console.error('No token found, unable to logout');
+        }
+        navigate('/login');
+    };
+
     return (
         <div className="instructor-page">
             <header className="dashboard-header">
@@ -50,13 +83,10 @@ const InstructorPage = () => {
                     <h1 className="title-platform">EDYOUVOYAGE</h1>
                 </div>
                 <div className="instructor-info">
-                    <span className="instructor-name">Instructor: John Doe</span>
+                    <span className="instructor-name">Instructor: {instructor.name}</span>
                     <button
                         className="logout-btn"
-                        onClick={() => {
-                            /* Logout function */
-                        }}
-                    >
+                        onClick={handleLogout}>
                         Logout
                     </button>
                 </div>
@@ -69,8 +99,8 @@ const InstructorPage = () => {
                 </button>
             </div>
             <h2 className="subtitle-share">Share your knowledge with us!</h2>
-            
-            <div  className="courses-container">
+
+            <div className="courses-container">
                 {courses.length === 0 ? (
                     <p>No courses added yet!</p>
                 ) : (

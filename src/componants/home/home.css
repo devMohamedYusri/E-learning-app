@@ -1,51 +1,131 @@
-.header{
-  display: flex;
-  /* justify-content: space-between; */
-  position: absolute;
-  top: 200px;
-  gap:500px;
-
-}
-.header > img{
-    width: 500px;
-    margin-right: 100px;
-    
-}
-.header>h1{
-    font-size: 50px;
-    color: white;
-    margin-top: 100px;
-    margin-left: 50px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.s-part{
+.header {
     display: flex;
-    margin-bottom: 200px;
-    margin-left: 20px;
-    gap:200px;
+    flex-direction: row;
+    /* استخدم اتجاه صف */
+    justify-content: space-between;
+    /* قم بمحاذاة المحتوى بين الجانبين */
+    align-items: center;
+    /* قم بمحاذاة المحتوى عموديًا في المنتصف */
+    position: relative;
+    /* احتفظ بها كنسق نسبي */
+    padding: 20px;
+    /* Padding للمساحة */
+    margin-top: -50px;
+    /* سحب الرأس لأعلى */
+    z-index: 2;
+    /* تأكد من أنه يظهر فوق SVG */
 }
-.s-part-1>i , .s-part-2>i , .s-part-3>i{
-   color: gray;
-   font-size: 30px;
-   margin-left: 10px;
+
+.header>img {
+    width: 100%;
+    /* عرض كامل للصورة */
+    max-width: 400px;
+    /* عرض أقصى للشاشات الأكبر */
+    height: auto;
+    /* المحافظة على نسبة العرض إلى الارتفاع */
 }
+
+.header>h1 {
+    font-size: 2rem;
+    /* استخدم وحدات نسبية لحجم الخط */
+    color: white;
+    margin: 0;
+    /* إزالة الهوامش */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+    /* محاذاة النص إلى اليسار */
+    max-width: 500px;
+    /* عرض أقصى للنص */
+}
+
+
+.s-part {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+    justify-content: space-around;
+    /* Space items evenly */
+    margin: 20px 0;
+    /* Margin for spacing */
+    padding: 0 20px;
+    /* Padding for better spacing */
+}
+
+.s-part-1,
+.s-part-2,
+.s-part-3 {
+    flex: 1;
+    /* Allow equal growth */
+    max-width: 300px;
+    /* Limit width for items */
+    text-align: center;
+    /* Center text */
+    margin: 10px;
+    /* Margin around items */
+}
+
+.s-part-1>i,
+.s-part-2>i,
+.s-part-3>i {
+    color: gray;
+    font-size: 2rem;
+    /* Use relative units */
+}
+
 .s-part-1>i:hover,
 .s-part-2>i:hover,
-.s-part-3>i:hover{
+.s-part-3>i:hover {
     color: rgba(137, 43, 226, 0.664);
 }
+
 .s-part-1>h2,
 .s-part-2>h2,
 .s-part-3>h2 {
-    font-size: 20px;
+    font-size: 1.5rem;
+    /* Responsive font size */
     display: inline;
-    margin-left: 20px;
+    margin: 10px 0;
+    /* Margin for spacing */
     font-weight: bolder;
 }
+
 .s-part-1>p,
 .s-part-2>p,
-.s-part-3>p{
+.s-part-3>p {
     color: rgba(128, 128, 128, 0.786);
-    margin-left: 10px;
+    margin: 5px 0;
+    /* Margin for spacing */
+}
+
+/* Media Queries for Additional Responsiveness */
+@media (max-width: 1024px) {
+    .header>h1 {
+        font-size: 1.5rem;
+        /* Adjust font size for medium screens */
+    }
+
+    .s-part>div {
+        max-width: 45%;
+        /* Adjust max width for medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .header>h1 {
+        font-size: 1.2rem;
+        /* Adjust font size for smaller screens */
+    }
+
+    .s-part {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center align items */
+    }
+
+    .s-part>div {
+        max-width: 100%;
+        /* Full width for smaller screens */
+    }
 }
 

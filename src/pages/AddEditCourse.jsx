@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { addCourse, getCourseById, updateCourse } from "../services/api/courses";
+import { addCourse, getCourseById, updateCourse } from "../services/api/InstructorCourses";
 import "../App.css";
 
 const AddEditCourse = () => {

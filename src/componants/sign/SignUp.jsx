@@ -1,14 +1,15 @@
 import "./sign.css";
 import Logo from "../logo/logo";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Import Link component
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/api/authorization"; 
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
-    grade: "", // New field for grade
+    grade: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -21,22 +22,43 @@ const SignUp = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
+    const passwordRegex = /^(?=.*\d).{8,}$/;
+
+    if (!formData.name) newErrors.name = "name is required";
     if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
-    if (!formData.grade) newErrors.grade = "Please select a grade"; // Grade validation
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (!passwordRegex.test(formData.password)) {
+      newErrors.password =
+        "Password must be at least 8 characters and include a number";
+    }
+    if (!formData.grade) newErrors.grade = "Please select a grade";
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
     } else {
       setErrors({});
-      console.log("Form submitted", formData);
-      navigate("/courses");
+      try {
+        
+        const response = await registerUser(formData);
+        console.log("form submitted successfully", response);
+        
+        if (response.token && response.user) {
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
+        } else {
+            console.error("Unexpected response structure", response);
+        }
+        navigate("/courses");
+      } catch (error) {
+        console.error("Error submitting the form:", error.message);
+        setErrors({ general: error.message });
+      }
     }
   };
 
@@ -47,14 +69,14 @@ const SignUp = () => {
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Username</label>
+            <label>name</label>
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
             />
-            {errors.username && <p className="error">{errors.username}</p>}
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
           <div>
             <label>Email</label>
@@ -93,9 +115,8 @@ const SignUp = () => {
           </button>
         </form>
 
-        {/* Link to Login page */}
         <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
+          Already have an account? <a href="/login">Log in</a>
         </p>
       </div>
     </div>

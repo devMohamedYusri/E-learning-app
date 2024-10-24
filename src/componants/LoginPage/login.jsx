@@ -1,44 +1,34 @@
-import './login.css';
-import { useState } from 'react';
+import "./login.css";
+import { useState } from "react";
+import { loginUser } from "../../services/api/authorization"; 
+import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  // Handle form submission
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://api.yourdomain.com/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const loginData = { email, password };
+      const data = await loginUser(loginData);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
-      }
-
-      localStorage.setItem('token', data.token);
-
-      window.location.href = '/dashboard';
+      setEmail('');
+      setPassword('');
+      window.location.href = "/";
     } catch (err) {
-      setError(err.message || 'Invalid email or password');
+      
+      setError(err.message || "Invalid email or password");
     }
   };
 
   return (
     <>
       <div className="login-container">
-        <h1>Student Login</h1>
+        <h1>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -64,17 +54,17 @@ export default function Login() {
 
           {error && <p className="error-message">{error}</p>}
 
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="login-btn">
+            Login
+          </button>
         </form>
 
-        {/* New section for 'Don't have an account?' */}
         <div className="register-link">
-          <p>Don't have an account? <a href="/register">Sign up here</a></p>
+          <p>
+            Dont have an account? <Link to="/sign-up">Sign up here</Link>
+          </p>
         </div>
       </div>
     </>
   );
 }
-
-
-

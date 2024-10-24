@@ -5,8 +5,10 @@ import "./nav.css";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
-  const handleScroll = () => {
+  const token = localStorage.getItem('token');
+  const storedUser = localStorage.getItem("user"); 
+  const user = storedUser ? JSON.parse(storedUser) : null; 
+    const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 50) {
       setIsScrolled(true);
@@ -30,7 +32,6 @@ const Navbar = () => {
     navigate("/instructorSign");
   };
 
-  // New handlers for navigation to Courses and Contact pages
   const handleCoursesClick = () => {
     navigate("/courses");
   };
@@ -39,6 +40,48 @@ const Navbar = () => {
     navigate("/contact");
   };
 
+  const handleMyCoursesNavigate = () => {
+    navigate("/my-courses")
+  };
+
+  const handleInstructorDashboard = () => {
+    navigate("/instructor-dashboard")
+  };
+
+  const handleLogout = () => {
+    const token = localStorage.getItem('token');
+    
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    
+    if (token) {
+      const logoutAPI = async () => {
+        try {
+          const response = await fetch('https://e-learning-backend-production-8163.up.railway.app/auth/logout', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,  
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to logout');
+          }
+  
+          console.log('Logged out successfully');
+        } catch (error) {
+          console.error('Error logging out:', error.message);
+        }
+      };
+  
+      logoutAPI();
+    } else {
+      console.error('No token found, unable to logout');
+    }
+      navigate('/login');
+  };
+  
   return (
     <>
       <svg
@@ -88,7 +131,6 @@ const Navbar = () => {
         <ul>
           <li onClick={() => navigate("/")}>Home</li>
 
-          {/* New navigation for Courses and Contact */}
           <li onClick={handleCoursesClick}>Courses</li>
 
           <li onClick={handleContactClick}>Contact</li>
@@ -96,10 +138,29 @@ const Navbar = () => {
           <li>
             <div className="dropdown">
               <i className={"fa-regular fa-user dropbtn"}></i>
-              <div className="dropdown-content">
-                <a onClick={handleSignUpStudent}>Sign-up as STUDENT</a>
-                <a onClick={handleSignUpInstructor}>Sign-up as INSTRUCTOR</a>
-              </div>
+              {token && user ? (
+                <>
+                  <p className="text-white center">{user.name}</p>
+                  <div className="dropdown-content">
+                    {user.role === 'student' ? (
+                      <>
+                        <a onClick={handleMyCoursesNavigate}>MY courses</a>
+                        <a onClick={handleLogout}>logout</a>
+                      </>
+                    ) : ( 
+                      <>
+                        <a onClick={handleInstructorDashboard}>Instructor Dashboard</a>
+                        <a onClick={handleLogout}>logout</a>
+                      </>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <div className="dropdown-content">
+                  <a onClick={handleSignUpStudent}>Sign-up as STUDENT</a>
+                  <a onClick={handleSignUpInstructor}>Sign-up as INSTRUCTOR</a>
+                </div>
+              )}
             </div>
           </li>
         </ul>

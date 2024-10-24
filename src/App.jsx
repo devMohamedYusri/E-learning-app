@@ -12,6 +12,7 @@ import Contact from "./componants/contact/Contactus";
 import Footer from "./componants/footer/Footer.jsx";
 import Details from "./componants/CourseInfoDetails/Details.jsx"; 
 import MyCourses from "./componants/Mycourses/MyCourses.jsx";
+import CourseContent from "./componants/CourseContent/CourseContent.jsx";
 
 export default function App() {
   const [courses, setCourses] = useState([]);
@@ -39,7 +40,7 @@ export default function App() {
         <Route path="/instructorSign" element={<InstructorSign />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/course/content/:id" element={<CourseContent/>}/>
         <Route
           path="/instructor-dashboard"
           element={

@@ -30,8 +30,7 @@ function Details() {
 
     const handleEnrollment = async (courseId) => {
         try {
-            const result = await enrollInCourse(courseId, token);
-            console.log('Enrollment successful:', result);
+            await enrollInCourse(courseId, token);
             navigate('/my-courses');
         } catch (error) {
             console.error('Enrollment failed:', error.message);

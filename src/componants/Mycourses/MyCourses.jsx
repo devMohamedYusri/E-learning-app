@@ -81,9 +81,13 @@ const MyCourses = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {myCourses.map((course) => (
                             <div key={course._id} className="course-card border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                                <img src={course.img} alt={course.name} className="w-full h-48 object-cover" />
+                                <a href={`/course/content/${course._id}`}>
+                                    <img src={course.img} alt={course.name} className="w-full h-48 object-cover" />
+                                </a>
                                 <div className="p-4">
-                                    <h3 className="text-xl font-semibold text-gray-800">{course.name}</h3>
+                                    <h3 className="text-xl font-semibold text-gray-800">
+                                        <a href={`/course/content/${course._id}`} className="text-blue-500 hover:text-blue-700">{course.name}</a>
+                                    </h3>
                                     <p className="text-gray-600">Rating: {course.rate} ⭐</p>
                                     <p className="text-gray-600">Price: ${course.price}</p>
                                     <p className="text-lg font-bold text-gray-800">Category: {course.category}</p>

@@ -10,7 +10,7 @@ const AddEditCourse = () => {
         rate: 0,
         price: 0,
         category: "",
-        image: null,
+        thumbnail: null,
         lessons: [{ title: "", video: null }]
     });
 
@@ -38,7 +38,7 @@ const AddEditCourse = () => {
 
     // Upload Course Img
     const handleImageUpload = (e) => {
-        setCourseData({ ...courseData, image: e.target.files[0] });
+        setCourseData({ ...courseData, thumbnail: e.target.files[0] });
     };
 
     // Edit Lesson
@@ -65,12 +65,31 @@ const AddEditCourse = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("name", courseData.name);
+        formData.append("description", courseData.description);
+        formData.append("rate", courseData.rate);
+        formData.append("price", courseData.price);
+        formData.append("category", courseData.category);
+
+        if (courseData.thumbnail) {
+            formData.append("thumbnail", courseData.thumbnail);
+        }
+
+        courseData.lessons.forEach((lesson, index) => {
+            formData.append(`lessons[${index}][title]`, lesson.title);
+            if (lesson.video) {
+                formData.append(`lessons[${index}][video]`, lesson.video);
+            }
+        });
+
         try {
             if (courseId) {
-                await updateCourse(courseId, courseData);
+                await updateCourse(courseId, formData);
                 alert("Course updated successfully!");
             } else {
-                await addCourse(courseData);
+                await addCourse(formData);
                 alert("Course added successfully!");
             }
             navigate("/instructor-dashboard");

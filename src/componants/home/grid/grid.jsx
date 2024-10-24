@@ -7,7 +7,7 @@ import {
   FaCrown,
   FaHeadset,
   FaBriefcase,
-} from "react-icons/fa"; // Import icons from react-icons
+} from "react-icons/fa"; 
 
 const features = [
   {

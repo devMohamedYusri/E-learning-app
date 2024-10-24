@@ -1,92 +1,72 @@
 .slider-container {
     width: 90%;
-    /* Use a responsive width */
     max-width: 1200px;
-    /* Max width for larger screens */
     margin: 0 auto;
-    /* Center align */
     padding: 20px;
-    /* Add some padding */
 }
 
 .slider-container>h2 {
     font-size: 2rem;
-    /* Use relative font size */
     font-weight: bolder;
     text-align: center;
-    /* Center align the heading */
     margin-bottom: 20px;
-    /* Spacing below the heading */
 }
 
 .course-card {
     padding: 10px;
-    /* Reduced padding for smaller screens */
     text-align: center;
     border: 1px solid #ccc;
-    /* Optional: Add border for better separation */
     border-radius: 8px;
-    /* Slightly rounded corners */
-    transition: transform 0.3s;
-    /* Smooth scaling effect on hover */
+    transition: transform 0.2s;
 }
 
 .course-card:hover {
     transform: scale(1.05);
-    /* Slightly enlarge on hover */
 }
 
 .course-card img {
     width: 100%;
-    /* Full width for images */
     height: auto;
-    /* Maintain aspect ratio */
     border-radius: 8px;
-    /* Rounded corners for images */
+
 }
 
 .course-info {
     margin-top: 10px;
-    /* Margin above course info */
+
 }
 
 .course-info p {
     margin: 5px 0;
     font-size: 1rem;
-    /* Use a responsive font size */
+
 }
 
-/* Media Queries for Additional Responsiveness */
+
 @media (max-width: 1024px) {
     .slider-container>h2 {
         font-size: 1.8rem;
-        /* Adjust font size for medium screens */
     }
 
     .course-card {
         padding: 15px;
-        /* Adjust padding for medium screens */
     }
 
     .course-info p {
         font-size: 0.9rem;
-        /* Adjust font size for medium screens */
     }
 }
 
 @media (max-width: 300px) {
     .slider-container>h2 {
         font-size: 1.5rem;
-        /* Adjust font size for smaller screens */
     }
 
     .course-card {
         padding: 10px;
-        /* Less padding for small screens */
     }
 
     .course-info p {
         font-size: 0.8rem;
-        /* Smaller font size for small screens */
     }
 }

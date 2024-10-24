@@ -13,7 +13,6 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const data = await fetchAllCourses();
-        console.log(data);
         setMyCourses(data);
       } catch (error) {
         console.error("Error fetching courses:", error);

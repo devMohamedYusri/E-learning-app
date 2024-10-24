@@ -52,7 +52,7 @@ const trackCourseProgress = async (studentId, courseId, token) => {
     try {
         const response = await axios.get(`https://e-learning-backend-production-8163.up.railway.app/api/students/${studentId}/courses/${courseId}/progress`, {
             headers: {
-                Authorization: `Bearer ${token}`, // Include the token for authentication
+                Authorization: `Bearer ${token}`, 
             },
         });
         if (response && response.data) {
@@ -90,4 +90,27 @@ const fetchAllCourses = async () => {
     }
 };
 
-export { enrollInCourse, fetchEnrolledCourses, trackCourseProgress, fetchAllCourses };
+const fetchCourseById = async (courseId, token) => {
+    try {
+        const response = await axios.get(`https://e-learning-backend-production-8163.up.railway.app/api/courses/course/${courseId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`, 
+            },
+        });
+        if (response && response.data) {
+            return response.data;
+        } else {
+            throw new Error("No data returned from server");
+        }
+    } catch (error) {
+        if (error.response) {
+            throw new Error(error.response.data.message || 'An error occurred on the server');
+        } else if (error.request) {
+            throw new Error('No response received from the server');
+        } else {
+            throw new Error(error.message || 'An unknown error occurred');
+        }
+    }
+};
+
+export { enrollInCourse, fetchEnrolledCourses, trackCourseProgress, fetchAllCourses, fetchCourseById };

@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="all">
       <div className="login-container">
         <h1>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
@@ -65,6 +65,6 @@ export default function Login() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

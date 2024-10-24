@@ -1,31 +1,30 @@
 import Footer from "../footer/Footer";
 import Navbar from "../nav/Navbar"; 
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
+import { fetchEnrolledCourses } from "../../services/api/courses";
 
 const MyCourses = () => {
-    const myCourses = [
-        {
-            id: 1,
-            title: "Learn Laravel: A Guided Path For Beginners",
-            rating: 4.2,
-            reviews: 9969,
-            price: 249.99,
-            img: "src/assets/larave.png",
-        },
-        {
-            id: 2,
-            title: "The Complete Angular Course",
-            rating: 4.4,
-            reviews: 72269,
-            price: 449.99,
-            img: "/src/assets/angular.png",
-        },
-    ];
-
+    const [myCourses, setMyCourses] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); 
+    console.log(myCourses);
+    useEffect(() => {
+        const studentId = JSON.parse(localStorage.getItem('user'))._id;
+        const token = localStorage.getItem('token');
+
+        const getCourses = async () => {
+            try {
+                const courses = await fetchEnrolledCourses(studentId, token);
+                setMyCourses(courses); 
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+
+        getCourses();
+    }, []);
 
     const filteredCourses = myCourses.filter((course) =>
-        course.title.toLowerCase().includes(searchTerm.toLowerCase())
+        course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -50,38 +49,48 @@ const MyCourses = () => {
                     />
                 </div>
 
-                <div className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">Filtered Courses</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredCourses.length > 0 ? (
-                            filteredCourses.map((course) => (
-                                <div key={course.id} className="course-card border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                                    <img src={course.img} alt={course.title} className="w-full h-48 object-cover" />
-                                    <div className="p-4">
-                                        <h3 className="text-xl font-semibold text-gray-800">{course.title}</h3>
-                                        <p className="text-gray-600">Rating: {course.rating} ⭐</p>
-                                        <p className="text-gray-600">Reviews: {course.reviews}</p>
-                                        <p className="text-lg font-bold text-gray-800">Price: ${course.price}</p>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p className="txt-search text-red-500">No courses found matching your search.</p>
-                        )}
+                {searchTerm && (
+                    <div className="flex justify-center mt-2">
+                        <div className="bg-white shadow-md p-4 w-1/2 rounded-md z-10">
+                            <h2 className="text-2xl font-semibold mb-4">Filtered Courses</h2>
+                            <div className="flex flex-row gap-4 overflow-x-auto">
+                                {filteredCourses.length > 0 ? (
+                                    filteredCourses.map((course) => (
+                                        <div key={course._id} className="flex items-center border rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105">
+                                            <img src={course.img} alt={course.name} className="w-16 h-16 object-cover mr-4" />
+                                            <div className="flex-1">
+                                                <h3 className="text-xl font-semibold text-gray-800">
+                                                    <a href={`/course/details/${course._id}`} className="text-blue-500 hover:text-blue-700">{course.name}</a>
+                                                </h3>
+                                                <p className="text-gray-600">Rating: {course.rate} ⭐</p>
+                                                <p className="text-gray-600">Price: ${course.price}</p>
+                                                <p className="text-lg font-bold text-gray-800">Category: {course.category}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="txt-search text-red-500">No courses found matching your search.</p>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 <div>
                     <h2 className="text-2xl font-semibold mb-4">All Courses</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {myCourses.map((course) => (
-                            <div key={course.id} className="course-card border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                                <img src={course.img} alt={course.title} className="w-full h-48 object-cover" />
+                            <div key={course._id} className="course-card border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                                <a href={`/course/content/${course._id}`}>
+                                    <img src={course.img} alt={course.name} className="w-full h-48 object-cover" />
+                                </a>
                                 <div className="p-4">
-                                    <h3 className="text-xl font-semibold text-gray-800">{course.title}</h3>
-                                    <p className="text-gray-600">Rating: {course.rating} ⭐</p>
-                                    <p className="text-gray-600">Reviews: {course.reviews}</p>
-                                    <p className="text-lg font-bold text-gray-800">Price: ${course.price}</p>
+                                    <h3 className="text-xl font-semibold text-gray-800">
+                                        <a href={`/course/content/${course._id}`} className="text-blue-500 hover:text-blue-700">{course.name}</a>
+                                    </h3>
+                                    <p className="text-gray-600">Rating: {course.rate} ⭐</p>
+                                    <p className="text-gray-600">Price: ${course.price}</p>
+                                    <p className="text-lg font-bold text-gray-800">Category: {course.category}</p>
                                 </div>
                             </div>
                         ))}

@@ -1,6 +1,11 @@
-
+.all{
+    background-image: url(../../assets/download.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
         
 .login-container {
+
   max-width: 400px;
   margin: auto;
   margin-top: 130px;
@@ -9,9 +14,7 @@
   border-radius: 8px;
   background-color: rgba(154, 123, 234, 0.307);
   box-shadow: #b87fde 5px 5px 5px 5px;
-    background-image: url(../../assets/download.jpeg);
-      background-repeat: no-repeat;
-      background-size: cover;
+
 
 }
 .login-container h1{
@@ -47,6 +50,7 @@ label {
   border: #5c0e8c solid 3px;
   border-radius: 10px;
   font-size: 20px;
+  height: 29px;
 }
 
 input:focus {

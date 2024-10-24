@@ -50,28 +50,24 @@ const MyCourses = () => {
                 </div>
 
                 {searchTerm && (
-                    <div className="flex justify-center mt-2">
-                        <div className="bg-white shadow-md p-4 w-1/2 rounded-md z-10">
-                            <h2 className="text-2xl font-semibold mb-4">Filtered Courses</h2>
-                            <div className="flex flex-row gap-4 overflow-x-auto">
-                                {filteredCourses.length > 0 ? (
-                                    filteredCourses.map((course) => (
-                                        <div key={course._id} className="flex items-center border rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105">
-                                            <img src={course.img} alt={course.name} className="w-16 h-16 object-cover mr-4" />
-                                            <div className="flex-1">
-                                                <h3 className="text-xl font-semibold text-gray-800">
-                                                    <a href={`/course/details/${course._id}`} className="text-blue-500 hover:text-blue-700">{course.name}</a>
-                                                </h3>
-                                                <p className="text-gray-600">Rating: {course.rate} ⭐</p>
-                                                <p className="text-gray-600">Price: ${course.price}</p>
-                                                <p className="text-lg font-bold text-gray-800">Category: {course.category}</p>
-                                            </div>
+                    <div className="absolute bg-white shadow-md p-4 w-1/2 mt-2 rounded-md">
+                        <h2 className="text-2xl font-semibold mb-4">Filtered Courses</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredCourses.length > 0 ? (
+                                filteredCourses.map((course) => (
+                                    <div key={course._id} className="course-card border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                                        <img src={course.img} alt={course.name} className="w-full h-48 object-cover" />
+                                        <div className="p-4">
+                                            <h3 className="text-xl font-semibold text-gray-800"><a href={`/course/details/${course._id}`} className="text-blue-500 hover:text-blue-700">{course.name}</a></h3>
+                                            <p className="text-gray-600">Rating: {course.rate} ⭐</p>
+                                            <p className="text-gray-600">Price: ${course.price}</p>
+                                            <p className="text-lg font-bold text-gray-800">Category: {course.category}</p>
                                         </div>
-                                    ))
-                                ) : (
-                                    <p className="txt-search text-red-500">No courses found matching your search.</p>
-                                )}
-                            </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="txt-search text-red-500">No courses found matching your search.</p>
+                            )}
                         </div>
                     </div>
                 )}

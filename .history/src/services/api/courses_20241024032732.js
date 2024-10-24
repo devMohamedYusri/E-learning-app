@@ -98,6 +98,7 @@ const fetchCourseById = async (courseId, token) => {
             },
         });
         if (response && response.data) {
+            console.log("use response",response);
             return response.data;
         } else {
             throw new Error("No data returned from server");

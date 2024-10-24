@@ -10,7 +10,6 @@ function Details() {
     const [courseDetails, setCourseDetails] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('token');
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getCourseDetails = async () => {
@@ -32,7 +31,7 @@ function Details() {
         try {
             const result = await enrollInCourse(courseId, token);
             console.log('Enrollment successful:', result);
-            navigate('/my-courses');
+            navigate('/my-courses')
         } catch (error) {
             console.error('Enrollment failed:', error.message);
         }

@@ -92,12 +92,14 @@ const fetchAllCourses = async () => {
 
 const fetchCourseById = async (courseId, token) => {
     try {
+        console.log(courseId)
         const response = await axios.get(`https://e-learning-backend-production-8163.up.railway.app/api/courses/course/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`, 
             },
         });
         if (response && response.data) {
+            console.log("use response",response);
             return response.data;
         } else {
             throw new Error("No data returned from server");

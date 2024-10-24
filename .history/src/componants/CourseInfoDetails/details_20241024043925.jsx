@@ -32,7 +32,7 @@ function Details() {
         try {
             const result = await enrollInCourse(courseId, token);
             console.log('Enrollment successful:', result);
-            navigate('/my-courses');
+            navigate('/my-courses')
         } catch (error) {
             console.error('Enrollment failed:', error.message);
         }

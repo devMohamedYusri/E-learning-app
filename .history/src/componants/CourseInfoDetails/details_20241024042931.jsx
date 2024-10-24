@@ -1,22 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCourseById, enrollInCourse } from '../../services/api/courses';
+import { fetchCourseById } from '../../services/api/courses';
 import Navbar from "../nav/Navbar";
+import image from "../../assets/angular.png"
 import Footer from "../footer/Footer.jsx";
-import { useNavigate } from 'react-router-dom'; 
 
 function Details() {
     const { id } = useParams();
     const [courseDetails, setCourseDetails] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('token');
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getCourseDetails = async () => {
             try {
                 const course = await fetchCourseById(id, token);
-                console.log(course);
                 setCourseDetails(course);
             } catch (err) {
                 setError(err.message);
@@ -26,17 +24,6 @@ function Details() {
 
         getCourseDetails();
     }, [id]);
-   
-
-    const handleEnrollment = async (courseId) => {
-        try {
-            const result = await enrollInCourse(courseId, token);
-            console.log('Enrollment successful:', result);
-            navigate('/my-courses');
-        } catch (error) {
-            console.error('Enrollment failed:', error.message);
-        }
-    };
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -52,7 +39,7 @@ function Details() {
             <div className="max-w-7xl mx-auto p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="col-span-2">
-                        <img src={courseDetails.img} alt={courseDetails.name} className="w-full h-64 object-cover rounded-md" />
+                        <img src={image} alt="Course" className="w-full h-64 object-cover rounded-md" />
                         <div className="mt-8">
                             <h2 className="text-xl font-bold">Description</h2>
                             <p className="mt-4 text-gray-700 leading-relaxed">
@@ -80,7 +67,7 @@ function Details() {
 
                         <h2 className="text-lg font-bold mb-4">Schedule</h2>
                         <p className="text-sm mb-2">{courseDetails.schedule}</p>
-                        <button onClick={() => handleEnrollment(courseDetails._id)} className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-md w-full">
+                        <button className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-md w-full">
                             ENROLL THE COURSE
                         </button>
                     </div>

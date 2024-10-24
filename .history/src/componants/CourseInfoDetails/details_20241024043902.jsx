@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom';
 import { fetchCourseById, enrollInCourse } from '../../services/api/courses';
 import Navbar from "../nav/Navbar";
 import Footer from "../footer/Footer.jsx";
-import { useNavigate } from 'react-router-dom'; 
+
 
 function Details() {
     const { id } = useParams();
     const [courseDetails, setCourseDetails] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('token');
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getCourseDetails = async () => {
@@ -32,7 +31,7 @@ function Details() {
         try {
             const result = await enrollInCourse(courseId, token);
             console.log('Enrollment successful:', result);
-            navigate('/my-courses');
+            navigate('/my-courses')
         } catch (error) {
             console.error('Enrollment failed:', error.message);
         }

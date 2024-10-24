@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCourseById, enrollInCourse } from '../../services/api/courses';
+import { fetchCourseById } from '../../services/api/courses';
 import Navbar from "../nav/Navbar";
+import image from "../../assets/angular.png"
 import Footer from "../footer/Footer.jsx";
-import { useNavigate } from 'react-router-dom'; 
 
 function Details() {
     const { id } = useParams();
     const [courseDetails, setCourseDetails] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('token');
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getCourseDetails = async () => {
@@ -26,16 +25,10 @@ function Details() {
 
         getCourseDetails();
     }, [id]);
-   
 
-    const handleEnrollment = async (courseId) => {
-        try {
-            const result = await enrollInCourse(courseId, token);
-            console.log('Enrollment successful:', result);
-            navigate('/my-courses');
-        } catch (error) {
-            console.error('Enrollment failed:', error.message);
-        }
+    const handleEnrollment = (courseId) => {
+        
+        console.log(`Enrolled in course with ID: ${courseId}`);
     };
 
     if (error) {
@@ -80,7 +73,7 @@ function Details() {
 
                         <h2 className="text-lg font-bold mb-4">Schedule</h2>
                         <p className="text-sm mb-2">{courseDetails.schedule}</p>
-                        <button onClick={() => handleEnrollment(courseDetails._id)} className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-md w-full">
+                        <button onClick={() => handleEnrollment(courseDetails.id)} className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-md w-full">
                             ENROLL THE COURSE
                         </button>
                     </div>

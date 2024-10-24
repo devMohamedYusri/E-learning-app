@@ -44,6 +44,10 @@ const Navbar = () => {
     navigate("/my-courses")
   };
 
+  const handleInstructorDashboard = () => {
+    navigate("/instructor-dashboard")
+  };
+
   const handleLogout = () => {
     const token = localStorage.getItem('token');
     
@@ -145,7 +149,7 @@ const Navbar = () => {
                       </>
                     ) : ( 
                       <>
-                        <a onClick={handleCoursesClick}>Courses Uploaded</a>
+                        <a onClick={handleInstructorDashboard}>Instructor Dashboard</a>
                         <a onClick={handleLogout}>logout</a>
                       </>
                     )}

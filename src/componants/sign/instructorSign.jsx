@@ -47,7 +47,7 @@ const InstructorSign = () => {
         const response = await registerUser(formData); 
         localStorage.setItem("token", response.token);
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/instructor"); 
+        navigate("/instructor-dashboard"); 
       } catch (err) {
         setErrors({ server: err.message }); 
       }
@@ -96,6 +96,9 @@ const InstructorSign = () => {
             Sign Up
           </button>
         </form>
+        <p className="login-link">
+          Already have an account? <a href="/login">Log in</a>
+        </p>
       </div>
     </div>
   );

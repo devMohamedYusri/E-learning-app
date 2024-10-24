@@ -16,6 +16,8 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
+      setEmail('');
+      setPassword('');
       window.location.href = "/";
     } catch (err) {
       
@@ -26,7 +28,7 @@ export default function Login() {
   return (
     <>
       <div className="login-container">
-        <h1>Student Login</h1>
+        <h1>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Email</label>

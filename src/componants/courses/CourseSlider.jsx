@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./course.css";
 
 export default function CourseSlider({ courses,category }) {
+  console.log(courses,"form slider courses");
   const settings = {
     dots: true,
     infinite: true,

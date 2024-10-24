@@ -1,28 +1,27 @@
 import Footer from "../footer/Footer";
 import Navbar from "../nav/Navbar"; 
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
+import { fetchEnrolledCourses } from "../../services/api/courses";
 
 const MyCourses = () => {
-    const myCourses = [
-        {
-            id: 1,
-            title: "Learn Laravel: A Guided Path For Beginners",
-            rating: 4.2,
-            reviews: 9969,
-            price: 249.99,
-            img: "src/assets/larave.png",
-        },
-        {
-            id: 2,
-            title: "The Complete Angular Course",
-            rating: 4.4,
-            reviews: 72269,
-            price: 449.99,
-            img: "/src/assets/angular.png",
-        },
-    ];
-
+    const [myCourses, setMyCourses] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); 
+
+    useEffect(() => {
+        const studentId =JSON.parse(localStorage.getItem('user'))._id;
+        const token=localStorage.getItem('token')
+
+        const getCourses = async () => {
+            try {
+                const courses = await fetchEnrolledCourses(studentId, token);
+                setMyCourses(courses); 
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+
+        getCourses();
+    }, []);
 
     const filteredCourses = myCourses.filter((course) =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase())
